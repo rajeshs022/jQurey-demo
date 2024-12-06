@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Local JSON data using getJSON() Method
+    </title>
+    <style>
+ 
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+ 
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            margin: 0;
+            font-size: 24px;
+        }
+ 
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+ 
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+ 
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+ 
+        td {
+            font-size: 14px;
+            color: #333;
+        }
+ 
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+ 
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 14px;
+        }
+ 
+        a:hover {
+            text-decoration: underline;
+        }
+ 
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+ 
+ 
+    </style>
+    <script src="jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            //fetch json data from open api
+            $.getJSON("MOCK_DATA.json",function(personResult){
+                var personData='';
+                //iterate in json array of Objects
+                $.each(personResult,function(key,value)
+                {
+                    personData+='<tr>';
+                        personData+='<td>' + value.id + '</td>';
+                        personData+='<td width=100px>' + value.first_name + '</td>';
+                        personData+='<td>' + value.last_name + '</td>';
+                        personData+='<td width=300px>' + value.email + '</td>';
+                        personData+='<td>' + value.gender + '</td>';
+                        personData+='<td>'+value.ip_address+'</td>';
+                        personData+='<td>'+value.city+'</td>';
+                        personData+='</tr>';
+                       
+                });
+                  //inserting rows into table
+                  $('#table').append(personData);
+            })
+        });
+    </script>
+ 
+</head>
+<body>
+    <div>
+        <h1>Employee List - JSON </h1>
+     
+        <table id='table'>
+         
+            <tr>
+                <th> Id</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>ip</th>
+                <th>city</th>
+            </tr>
+    </table>
+    <br>
+    <br>
+    <div style="text-align:center;"><a href="MOCK_DATA.json">Data Sourced from Internal Mock Server</a></div>
+    </div>
+</body>
+</html>
